@@ -92,18 +92,33 @@ WHERE InvoiceId=37
 
 ## 11. Line Items Per Invoice 
 ```
+SELECT InvoiceLineId, COUNT(Quantity)
+FROM InvoiceLine
+GROUP BY InvoiceId
 ```
 
 ## 12. Line Item Track 
 ```
+SELECT InvoiceLine.InvoiceLineId, Track.Name
+FROM InvoiceLine
+INNER JOIN Track ON Track.TrackId = InvoiceLine.TrackId
+INNER JOIN Album ON Album.AlbumId = Track.AlbumId
 ```
 
 ## 13. Line Item Track Artist 
 ```
+SELECT InvoiceLine.InvoiceLineId, Track.Name, Artist.Name
+FROM InvoiceLine
+INNER JOIN Track ON Track.TrackId = InvoiceLine.TrackId
+INNER JOIN Album ON Album.AlbumId = Track.AlbumId
+INNER JOIN Artist ON Artist.ArtistId = Album.ArtistId
 ```
 
 ## 14. Country Invoices 
 ```
+SELECT COUNT(*), Invoice.BillingCountry
+FROM Invoice
+GROUP BY BillingCountry
 ```
 
 ## 15. Playlists Track Count 
