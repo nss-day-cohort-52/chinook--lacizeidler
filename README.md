@@ -123,18 +123,32 @@ GROUP BY BillingCountry
 
 ## 15. Playlists Track Count 
 ```
+
 ```
 
 ## 16. Tracks No Id 
 ```
+SELECT Track.Name, MediaType.Name, Genre.Name
+FROM Track
+JOIN MediaType ON MediaType.MediaTypeId = Track.MediaTypeId
+JOIN Genre ON Genre.GenreId = Track.GenreId
 ```
 
 ## 17. Invoices Lone Item Count 
 ```
+SELECT InvoiceLine.InvoiceId, COUNT(InvoiceLine.InvoiceId)
+FROM InvoiceLine
+JOIN Invoice on Invoice.InvoiceId = InvoiceLine.InvoiceId
+GROUP BY InvoiceLine.InvoiceId
 ```
 
 ## 18. Sales Agent Total Sales 
 ```
+SELECT Employee.FirstName, Employee.LastName, SUM(Invoice.Total)
+FROM Customer 
+INNER JOIN Invoice ON Customer.CustomerId = Invoice.CustomerId 
+INNER JOIN Employee ON Employee.EmployeeId = Customer.SupportRepId
+GROUP BY Employee.EmployeeId
 ```
 
 ## 19. Top 2009 Agent 
